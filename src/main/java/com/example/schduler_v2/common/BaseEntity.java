@@ -20,14 +20,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
-	@Column(updatable = false, nullable = false)
 	@CreatedDate
+	@Column(updatable = false, nullable = false)
 	private LocalDateTime createAt;
 
 	@LastModifiedDate
 	private LocalDateTime updateAt;
 
-
-	@LastModifiedDate
 	private LocalDateTime deleteAt;
 }

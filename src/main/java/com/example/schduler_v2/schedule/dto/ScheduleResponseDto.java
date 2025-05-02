@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import org.antlr.v4.runtime.misc.NotNull;
+import com.example.schduler_v2.schedule.entity.Schedule;
 
 @Getter
 @NoArgsConstructor
@@ -14,7 +15,17 @@ import org.antlr.v4.runtime.misc.NotNull;
 public class ScheduleResponseDto {
 	private String title;
 	private String content;
-	private String writerId;
+	private Long writerId;
 	private Long commentCount;
 	private LocalDateTime time;
+
+	public static ScheduleResponseDto toDto(Schedule schedule, Long commentCount) {
+		return new ScheduleResponseDto(
+			schedule.getTitle(),
+			schedule.getContent(),
+			schedule.getUserId(),
+			commentCount,
+			schedule.getCreateAt()
+		);
+	}
 }

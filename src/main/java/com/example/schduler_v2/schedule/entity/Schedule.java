@@ -37,4 +37,10 @@ public class Schedule extends BaseEntity {
 
 	@OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY)
 	private List<Comment> commentList;
+
+	public Schedule(Long userId, String content, String title) {
+		this.userId = userId;
+		this.content = content;
+		this.title = title;
+	}
 }

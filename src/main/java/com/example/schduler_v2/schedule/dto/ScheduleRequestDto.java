@@ -17,5 +17,5 @@ public class ScheduleRequestDto {
 	private String content;
 
 	@NotBlank
-	private String writerId;
+	private Long writerId;
 }
