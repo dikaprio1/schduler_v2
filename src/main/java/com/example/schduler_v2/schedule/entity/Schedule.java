@@ -1,18 +1,20 @@
 package com.example.schduler_v2.schedule.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import com.example.schduler_v2.comment.entity.Comment;
 import com.example.schduler_v2.common.BaseEntity;
@@ -20,11 +22,12 @@ import com.example.schduler_v2.common.BaseEntity;
 @Getter
 @Entity
 @Table(name = "schedule")
+@NoArgsConstructor
 public class Schedule extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "scheduleId")
+	@Column(name = "schedule_id")
 	private Long id;
 
 	@Column(nullable = false)
@@ -33,13 +36,13 @@ public class Schedule extends BaseEntity {
 	private String content;
 
 	@Column(nullable = false)
-	private Long userId;
+	private Long writerId;
 
-	@OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY)
-	private List<Comment> commentList;
+	@OneToMany(mappedBy = "schedule", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private List<Comment> comments = new ArrayList<>();;
 
 	public Schedule(Long userId, String content, String title) {
-		this.userId = userId;
+		this.writerId = userId;
 		this.content = content;
 		this.title = title;
 	}

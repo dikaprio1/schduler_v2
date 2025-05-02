@@ -6,18 +6,16 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.schduler_v2.schedule.dto.ScheduleListResponseDto;
 import com.example.schduler_v2.schedule.dto.ScheduleRequestDto;
-import com.example.schduler_v2.schedule.dto.ScheduleResponseDto;
-import com.example.schduler_v2.schedule.entity.Schedule;
+import com.example.schduler_v2.schedule.dto.ScheduleCreateResponseDto;
+import com.example.schduler_v2.schedule.dto.ScheduleWithCommentsResponseDto;
 import com.example.schduler_v2.schedule.service.ScheduleService;
 
 @RestController
@@ -27,22 +25,22 @@ public class ScheduleController {
 	private final ScheduleService scheduleService;
 
 	@PostMapping
-	public ResponseEntity<ScheduleResponseDto> createSchedule(@RequestBody ScheduleRequestDto requestDto){
-		ScheduleResponseDto responseDto = scheduleService.createSchedule(requestDto);
+	public ResponseEntity<ScheduleCreateResponseDto> createSchedule(@RequestBody ScheduleRequestDto requestDto){
+		ScheduleCreateResponseDto responseDto = scheduleService.createSchedule(requestDto);
 		return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
 	}
 
 	@GetMapping
-	public ResponseEntity<List<ScheduleResponseDto>> findAllSchedules(){
-		List<ScheduleResponseDto> scheduleList = scheduleService.findAllSchedules();
+	public ResponseEntity<List<ScheduleListResponseDto>> findAllSchedules(){
+		List<ScheduleListResponseDto> scheduleList = scheduleService.findAllSchedules();
 		return new ResponseEntity<>(scheduleList, HttpStatus.OK);
 	}
 
-	// @GetMapping("/{id}")
-	// public ResponseEntity<ScheduleResponseDto> findScheduleById(@PathVariable Long id){
-	// 	ScheduleResponseDto responseDto = scheduleService.findScheduleById(id);
-	// 	return new ResponseEntity<>(responseDto, HttpStatus.OK);
-	// }
+	@GetMapping("/{id}")
+	public ResponseEntity<ScheduleWithCommentsResponseDto> findScheduleById(@PathVariable Long id){
+		ScheduleWithCommentsResponseDto responseDto = scheduleService.findScheduleById(id);
+		return new ResponseEntity<>(responseDto, HttpStatus.OK);
+	}
 
 	// @PutMapping("/{id}")
 	// public ResponseEntity<ScheduleResponseDto> updateSchedule(@PathVariable Long id,@RequestBody ScheduleRequestDto requestDto){

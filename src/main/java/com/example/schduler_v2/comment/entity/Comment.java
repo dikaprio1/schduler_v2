@@ -31,10 +31,10 @@ public class Comment extends BaseEntity {
 	private String content;
 
 	@Column(nullable = false)
-	private Long userId;
+	private Long writerId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "scheduleId")
+	@JoinColumn(name = "schedule_id")
 	private Schedule schedule;
 
 	// 부모 댓글
