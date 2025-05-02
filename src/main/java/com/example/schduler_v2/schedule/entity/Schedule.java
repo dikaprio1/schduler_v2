@@ -18,6 +18,8 @@ import lombok.NoArgsConstructor;
 
 import com.example.schduler_v2.comment.entity.Comment;
 import com.example.schduler_v2.common.BaseEntity;
+import com.example.schduler_v2.schedule.dto.ScheduleRequestDto;
+import com.example.schduler_v2.schedule.dto.ScheduleUpdateRequestDto;
 
 @Getter
 @Entity
@@ -45,5 +47,12 @@ public class Schedule extends BaseEntity {
 		this.writerId = userId;
 		this.content = content;
 		this.title = title;
+	}
+
+	public void updateTitle(ScheduleUpdateRequestDto requestDto){
+		this.title = requestDto.getTitle();
+	}
+	public void updateContent(ScheduleUpdateRequestDto requestDto){
+		this.content = requestDto.getContent();
 	}
 }

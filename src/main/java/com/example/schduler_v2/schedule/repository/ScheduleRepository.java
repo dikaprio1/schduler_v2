@@ -25,4 +25,9 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 			new IllegalArgumentException("존재하지 않는 정보입니다.")); // 조회 실패시(해당 id 없을 때) 404, "존재하지 않는 정보입니다."
 	}
 
+	default Schedule findByIdOrElseThrow(Long id) {
+		return findById(id).orElseThrow(() ->
+			new IllegalArgumentException("존재하지 않는 정보입니다.")); // 조회 실패시(해당 id 없을 때) 404, "존재하지 않는 정보입니다."
+	}
+
 }

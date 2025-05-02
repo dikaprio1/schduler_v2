@@ -1,22 +1,20 @@
 package com.example.schduler_v2.schedule.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import com.example.schduler_v2.schedule.entity.Schedule;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ScheduleRequestDto {
-
-	@NotBlank
+public class ScheduleResponseDto {
 	private String title;
-
-	@NotBlank
 	private String content;
-
-	@NotBlank
 	private Long writerId;
+	private LocalDateTime time;
+
 }

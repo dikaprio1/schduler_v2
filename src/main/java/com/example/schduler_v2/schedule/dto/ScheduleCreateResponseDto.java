@@ -15,7 +15,7 @@ public class ScheduleCreateResponseDto {
 	private String title;
 	private String content;
 	private Long writerId;
-	private LocalDateTime createAt;
+	private LocalDateTime createdAt;
 	private Long commentCount;
 
 	public static ScheduleCreateResponseDto toDto(Schedule schedule, Long commentCount) {
