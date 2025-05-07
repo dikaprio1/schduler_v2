@@ -24,7 +24,7 @@ import com.example.schduler_v2.schedule.dto.ScheduleWithCommentsResponseDto;
 import com.example.schduler_v2.schedule.service.ScheduleService;
 
 @RestController
-@RequestMapping("/schedule")
+@RequestMapping("/schedules")
 @RequiredArgsConstructor
 public class ScheduleController {
 	private final ScheduleService scheduleService;

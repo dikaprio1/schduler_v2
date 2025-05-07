@@ -22,41 +22,41 @@ import com.example.schduler_v2.comment.dto.CommentUpdateRequestDto;
 import com.example.schduler_v2.comment.service.CommentService;
 
 @RestController
-@RequestMapping("/schedule/{scheduleId}/comments")
+@RequestMapping("")
 @RequiredArgsConstructor
 public class CommentController {
 	private final CommentService commentService;
 
-	@PostMapping
+	@PostMapping("/schedule/{scheduleId}/comments")
 	public ResponseEntity<CommentResponseDto> createComment(@PathVariable Long scheduleId, @RequestBody CommentCreateRequestDto requestDto){
 		CommentResponseDto responseDto = commentService.createComment(scheduleId,requestDto);
 		return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
 	}
-	@PostMapping("/{parentCommentId}/replies")
+	@PostMapping("/schedule/{scheduleId}/comments/{parentCommentId}/replies")
 	public ResponseEntity<CommentResponseDto> createReply(@PathVariable Long scheduleId, @PathVariable Long parentCommentId, @RequestBody CommentCreateRequestDto requestDto) {
 		CommentResponseDto response = commentService.createReply(scheduleId, parentCommentId, requestDto);
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping
+	@GetMapping("/schedule/{scheduleId}/comments")
 	public ResponseEntity<List<CommentDto>> findAllComments(@PathVariable Long scheduleId){
 		List<CommentDto> commentList = commentService.findAllComments(scheduleId);
 		return new ResponseEntity<>(commentList, HttpStatus.OK);
 	}
 
-	@GetMapping("/{commentId}")
+	@GetMapping("/comments/{commentId}")
 	public ResponseEntity<CommentDto> findCommentById(@PathVariable Long commentId){
 		CommentDto responseDto = commentService.findCommentById(commentId);
 		return new ResponseEntity<>(responseDto, HttpStatus.OK);
 	}
 
-	@PutMapping("/{commentId}")
+	@PutMapping("/comments/{commentId}")
 	public ResponseEntity<CommentResponseDto> updateComment(@PathVariable Long commentId, @RequestBody CommentUpdateRequestDto requestDto) {
 		CommentResponseDto responseDto = commentService.updateComment(commentId, requestDto);
 		return ResponseEntity.ok(responseDto);
 	}
 
-	@DeleteMapping("/{commentId}")
+	@DeleteMapping("/comments/{commentId}")
 	public ResponseEntity<CommentDeleteResponseDto> deleteComment(@PathVariable Long commentId) {
 		CommentDeleteResponseDto responseDto = commentService.deleteComment(commentId);
 		return ResponseEntity.ok(responseDto);

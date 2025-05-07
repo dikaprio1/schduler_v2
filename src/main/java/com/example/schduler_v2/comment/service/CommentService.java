@@ -41,8 +41,8 @@ public class CommentService {
 		Comment parentComment = commentRepository.findById(parentCommentId)
 			.orElseThrow(() -> new CustomException(ErrorCode.COMMENT_NOT_FOUND));
 
-		if (parentComment.getParent() != null) {
-			throw new CustomException(ErrorCode.EXIST_CHILD_COMMENT);
+		if (parentComment.getChildren() != null && parentComment.getChildren().getDeleteAt() == null) {
+			throw new CustomException(ErrorCode.ALREADY_HAS_REPLY); // 이 에러코드는 직접 정의
 		}
 
 		Comment reply = new Comment(requestDto.getContent(), requestDto.getWriterId(), schedule, parentComment);
@@ -52,8 +52,10 @@ public class CommentService {
 		return new CommentResponseDto(saved.getWriterId(), saved.getSchedule().getId(), saved.getContent(), saved.getCreateAt());
 	}
 	public List<CommentDto> findAllComments(Long scheduleId) {
-		List<Comment> commentList = commentRepository.findByScheduleId(scheduleId);
-
+		List<Comment> commentList = commentRepository.findByScheduleIdAndDeleteAtIsNull(scheduleId);
+		if (commentList.isEmpty()) {
+			throw new CustomException(ErrorCode.COMMENT_NOT_FOUND);
+		}
 		return commentList.stream()
 			.map(CommentDto::new)
 			.toList();
@@ -62,6 +64,9 @@ public class CommentService {
 	public CommentDto findCommentById(Long commentId){
 		Comment comment = commentRepository.findById(commentId)
 			.orElseThrow(() -> new CustomException(ErrorCode.COMMENT_NOT_FOUND));
+		if(comment.getDeleteAt() != null){
+			throw new CustomException(ErrorCode.COMMENT_NOT_FOUND);
+		}
 		return new CommentDto(comment);
 	}
 
@@ -69,7 +74,9 @@ public class CommentService {
 	public CommentResponseDto updateComment(Long commentId, CommentUpdateRequestDto requestDto) {
 		Comment comment = commentRepository.findById(commentId)
 			.orElseThrow(() -> new CustomException(ErrorCode.COMMENT_NOT_FOUND));
-
+		if(comment.getDeleteAt() != null){
+			throw new CustomException(ErrorCode.COMMENT_NOT_FOUND);
+		}
 		comment.updateContent(requestDto.getContent());
 		commentRepository.save(comment); // 실질적으로는 없어도 되지만 명확히 해줌
 
