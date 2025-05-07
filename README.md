@@ -33,17 +33,17 @@ Spring Boot 기반의 일정 & 댓글 관리 API입니다.
 ---
 
 ##  요청 예시
-![캡처.PNG](../image/%EC%BA%A1%EC%B2%98.PNG)
-![캡처2.PNG](../image/%EC%BA%A1%EC%B2%982.PNG)
-![캡처3.PNG](../image/%EC%BA%A1%EC%B2%983.PNG)
-![캡처4.PNG](../image/%EC%BA%A1%EC%B2%984.PNG)
-![캡처5.PNG](../image/%EC%BA%A1%EC%B2%985.PNG)
-![캡처6.PNG](../image/%EC%BA%A1%EC%B2%986.PNG)
-![캡처7.PNG](../image/%EC%BA%A1%EC%B2%987.PNG)
-![캡처8.PNG](../image/%EC%BA%A1%EC%B2%988.PNG)
-![캡처9.PNG](../image/%EC%BA%A1%EC%B2%989.PNG)
-![캡처10.PNG](../image/%EC%BA%A1%EC%B2%9810.PNG)
-![캡처11.PNG](../image/%EC%BA%A1%EC%B2%9811.PNG)
+![캡처.PNG](image/캡처.PNG)
+![캡처2.PNG](image/캡처2.PNG)
+![캡처3.PNG](image/캡처3.PNG)
+![캡처4.PNG](image/캡처4.PNG)
+![캡처5.PNG](image/캡처5.PNG)
+![캡처6.PNG](image/캡처6.PNG)
+![캡처7.PNG](image/캡처7.PNG)
+![캡처8.PNG](image/캡처8.PNG)
+![캡처9.PNG](image/캡처9.PNG)
+![캡처10.PNG](image/캡처10.PNG)
+![캡처11.PNG](image/캡처11.PNG)
 ---
 
 ##  주요 특징
