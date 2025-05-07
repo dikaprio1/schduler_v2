@@ -58,8 +58,7 @@ Spring Boot 기반의 일정 & 댓글 관리 API입니다.
 ##  기술 스택
 
 - Java 17
-- Spring Boot 3.x
+- Spring Boot
 - Spring Data JPA
-- MySQL / H2
+- MySQL
 - Lombok
-- Gradle
