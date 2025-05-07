@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.schduler_v2.schedule.dto.ScheduleDeleteResponseDto;
 import com.example.schduler_v2.schedule.dto.ScheduleListResponseDto;
 import com.example.schduler_v2.schedule.dto.ScheduleRequestDto;
 import com.example.schduler_v2.schedule.dto.ScheduleCreateResponseDto;
@@ -51,9 +53,9 @@ public class ScheduleController {
 		return new ResponseEntity<>(responseDto, HttpStatus.OK);
 	}
 
-	// @DeleteMapping("/{id}")
-	// public ResponseEntity<ScheduleResponseDto> deleteSchedule(@PathVariable Long id){
-	// 	ScheduleResponseDto responseDto = scheduleService.deleteSchedule(requestDto);
-	// 	return new ResponseEntity<>(responseDto, HttpStatus.OK);
-	// }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<ScheduleDeleteResponseDto> deleteSchedule(@PathVariable Long id){
+		ScheduleDeleteResponseDto responseDto = scheduleService.deleteSchedule(id);
+		return new ResponseEntity<>(responseDto, HttpStatus.OK);
+	}
 }

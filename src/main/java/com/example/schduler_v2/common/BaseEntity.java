@@ -7,13 +7,10 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 
 import lombok.Getter;
-import lombok.NonNull;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @Getter
 @MappedSuperclass
@@ -28,4 +25,9 @@ public class BaseEntity {
 	private LocalDateTime updateAt;
 
 	private LocalDateTime deleteAt;
+
+
+	public void softDelete(){
+		this.deleteAt = LocalDateTime.now();
+	}
 }
